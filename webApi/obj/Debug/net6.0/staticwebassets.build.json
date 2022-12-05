@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "23HpDPxTW/AJBWMdbG1CAMh5VEpnneUS79Sh5tDC1DQ=",
-  "Source": "sep4Rider",
-  "BasePath": "_content/sep4Rider",
+  "Hash": "zblXTmuNHNHyqt6mBeG+HeTYARm1BTzBgVEq3sfEnII=",
+  "Source": "webApi",
+  "BasePath": "_content/webApi",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
