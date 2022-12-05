@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7DM7EBV8Hzxsl1lLsqny5PxZUfG9WMklAXP/TtI05MZu1aMDlOtTxLvwULrU9S9i5ByfzBlXezLwQ4wZMfguIw==",
+  "dgSpecHash": "AQtG2gdintlw5EhDS/aEW4YGz97JxIfwduJiAt0ou2RaPJSz+XVuVKPy0ZR+xPSxV+erdOQe1kg9toJfJepWZw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hamod\\RiderProjects\\sep4Rider\\Entities\\Entities.csproj",
+  "projectFilePath": "C:\\Sep4DataVia\\Entities\\Entities.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
