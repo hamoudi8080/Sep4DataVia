@@ -8,30 +8,30 @@ using WebSocketSharp;
 namespace WebAPI.WebSocketGetway.ClientWebSocket
 {
 
-    public sealed class LoriotClient
+    public sealed class WebSocketClient
     {
-        private static readonly Lazy<LoriotClient> lazy = new(() => new LoriotClient());
+        private static readonly Lazy<WebSocketClient> lazy = new(() => new WebSocketClient());
 
-        private WebSocket _socket;
+        private WebSocket  ws;
 
         private string Url =
            "wss://iotnet.teracom.dk/app?token=vnoUeQAAABFpb3RuZXQudGVyYWNvbS5kayL9sv9it8LFL5jggp-rve4=";
         private ILoriotService _loriotService;
 
-        public static LoriotClient Instance => lazy.Value;
+        public static WebSocketClient Instance => lazy.Value;
 
         // as we need to handle situation that we don't know exactly when they will happen,
         // so, to receive a msg from the server etc, we use event handlers: onClose, onMessage, onOpen...
         // those are event handlers that we can subscribe to.
-        private LoriotClient()
+        private WebSocketClient()
         {
             _loriotService = new LoriotImp();
-            _socket = new WebSocket(Url);
-            _socket.OnOpen += OnOpen;
-            _socket.OnMessage += OnMessage;
-            _socket.OnError += _socket_OnError;
-            _socket.OnClose += OnClose;
-            _socket.Connect();
+            ws = new WebSocket(Url);
+            ws.OnOpen += OnOpen;
+            ws.OnMessage += OnMessage;
+            ws.OnError += _socket_OnError;
+            ws.OnClose += OnClose;
+            ws.Connect();
         }
 
         private void _socket_OnError(object? sender, WebSocketSharp.ErrorEventArgs e)
@@ -41,9 +41,7 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
 
         public void SendDownLinkMessage(string eui, int toOpen)
         {
-            string data = toOpen == 1
-                ? "01"
-                : "00";
+            string data = toOpen == 1 ? "01" : "00";
 
             var message = new DLinkMessage()
             {
@@ -54,9 +52,16 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
                 data = data
             };
             //serialize the message 
+            // DLinkMessage m = new DLinkMessage();
+            // m.EUI = "hello";
+            // m.cmd = "key";
+            // m.data = "hello there";
+            // m.port = 1;
+            // m.confirmed = true;
+            
             string serializeMsg  = JsonSerializer.Serialize(message);
             Console.WriteLine(serializeMsg);
-            _socket.Send(serializeMsg);
+            ws.Send(serializeMsg);
         }
 
         public void GetCacheReadings()
@@ -66,7 +71,7 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
                 cmdMessage = "cq"
             };
             var json = JsonSerializer.Serialize(message);
-            _socket.Send(json);
+            ws.Send(json);
         }
 
         private void OnOpen(object? sender, EventArgs e)

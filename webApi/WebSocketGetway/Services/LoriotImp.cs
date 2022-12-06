@@ -1,12 +1,26 @@
-﻿using WebAPI.WebSocketGetway.Model;
+﻿using WebAPI.Gateway.Persistence;
+using WebAPI.Gateway.Service;
+using WebAPI.WebSocketGetway.Model;
 
 namespace WebAPI.WebSocketGetway.Services
 {
     public class LoriotImp : ILoriotService
     {
+        
+        
+        
+        private readonly ILoriotRepo _loriotRepo;
+        private MessageProcessor _processor;
+       
+        
+        public LoriotImp()
+        {
+            _loriotRepo = new LoriotRepo();
+            _processor = new MessageProcessor();
+        }
         public async Task HandlingMessage(IOTMessage message)
         {
-            Console.WriteLine("my message is here now " +message);
+            Console.WriteLine("my message is here now " + message);
 
             
 
@@ -23,8 +37,8 @@ namespace WebAPI.WebSocketGetway.Services
                         // await _loriotRepo.AddCo2Async(co2);
 
 
-                         //var measurement = _processor.CreateMeasurement(message);
-                         //await _loriotRepo.AddMeasurement(measurement, message.EUI);
+                         var measurement = _processor.CreateMeasurement(message);
+                         await _loriotRepo.AddMeasurement(measurement, message.EUI);
                         break;
                     }
             }

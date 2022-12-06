@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
- 
+using WebAPI.Persistance;
+using WebAPI.Persistance.Interface;
+using WebAPI.service;
+using WebAPI.service.ServiceInterface;
 using WebAPI.WebSocketGetway.Services;
 
 namespace WebAPI
@@ -21,8 +24,8 @@ namespace WebAPI
         {
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" }); });
-            //services.AddScoped<IMeasurementService, MeasurementService>();
-            //services.AddScoped<IMeasurementRepo, MeasurementRepo>();
+            services.AddScoped<IMeasurementService, MeasurementService>();
+            services.AddScoped<IMeasurementRepo, MeasurementRepo>();
             services.AddScoped<ILoriotService, LoriotImp>();
             // services.AddDbContextPool<MushroomDatabase>(option=>option.UseSqlServer());
 
