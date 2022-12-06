@@ -1074,6 +1074,19 @@
         "runtime": {
           "bin/placeholder/Entities.dll": {}
         }
+      },
+      "Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Model.dll": {}
+        }
       }
     }
   },
@@ -3718,6 +3731,11 @@
       "type": "project",
       "path": "../Entities/Entities.csproj",
       "msbuildProject": "../Entities/Entities.csproj"
+    },
+    "Model/1.0.0": {
+      "type": "project",
+      "path": "../Model/Model.csproj",
+      "msbuildProject": "../Model/Model.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3727,6 +3745,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 7.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer.Design >= 2.0.0-preview1-final",
+      "Model >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3",
       "websocketsharp.core >= 1.0.0"
     ]
@@ -3758,6 +3777,9 @@
           "projectReferences": {
             "C:\\Sep4DataVia\\Entities\\Entities.csproj": {
               "projectPath": "C:\\Sep4DataVia\\Entities\\Entities.csproj"
+            },
+            "C:\\Sep4DataVia\\Model\\Model.csproj": {
+              "projectPath": "C:\\Sep4DataVia\\Model\\Model.csproj"
             }
           }
         }

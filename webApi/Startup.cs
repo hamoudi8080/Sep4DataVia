@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
- 
+using Model.Contract;
+using WebAPI.EfcData.DaoImp;
+using WebAPI.EfcData.DataAccess;
 using WebAPI.WebSocketGetway.Services;
 
 namespace WebAPI
@@ -25,6 +27,9 @@ namespace WebAPI
             //services.AddScoped<IMeasurementRepo, MeasurementRepo>();
             services.AddScoped<ILoriotService, LoriotImp>();
             // services.AddDbContextPool<MushroomDatabase>(option=>option.UseSqlServer());
+
+            services.AddScoped<IMeasurement, MeasurementDao>();
+            services.AddDbContext<DataAccess1>();
 
         }
 
