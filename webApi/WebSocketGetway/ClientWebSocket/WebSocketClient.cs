@@ -42,35 +42,115 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
         {
             Console.WriteLine("GATEWAY CONTROLLER => ERROR OCCURED: " + e.Message);
         }
+        private string type = "Humidity";
 
+        private int min = 20;
+        private int max = 50;
         public void SendDownLinkMessage( )
         {
-             
 
-            var message = new DLinkMessage()
+
+            if (type.Equals("Co2"))
             {
-                cmd = "tx",
-                EUI = eui,
-                port = 5,
-                confirmed = true,
-                data = "123C123D"
-            };
-            //serialize the message 
-            // DLinkMessage m = new DLinkMessage();
-            // m.EUI = "hello";
-            // m.cmd = "key";
-            // m.data = "hello there";
-            // m.port = 1;
-            // m.confirmed = true;
+               
+                string minInhex = min.ToString("X4");
+                string maxInhex = max.ToString("X4");
+                string s = string.Concat(minInhex, maxInhex);
+                var message = new DLinkMessage()
+                {
+                    cmd = "tx",
+                    EUI = eui,
+                    port = 10,
+                    confirmed = true,
+                    data = s
+                
+                };
+           
             
-            string serializeMsg  = JsonSerializer.Serialize(message);
-            Console.WriteLine(serializeMsg);
-
-            for (;;)
-            {
-                ws.Send(serializeMsg);
-                Thread.Sleep(30000);
+                string serializeMsg  = JsonSerializer.Serialize(message);
+                Console.WriteLine(serializeMsg);
+                
+                for (;;)
+                {
+                    ws.Send(serializeMsg);
+                    Thread.Sleep(30000);
+                }
             }
+            if (type == "Termperature")
+            { 
+                string minInhex = min.ToString("X4");
+                string maxInhex = max.ToString("X4");
+                string s = string.Concat(minInhex, maxInhex);
+                var message = new DLinkMessage()
+                {
+                    cmd = "tx",
+                    EUI = eui,
+                    port = 12,
+                    confirmed = true,
+                    data = "123C123D"
+                
+                };
+           
+            
+                string serializeMsg  = JsonSerializer.Serialize(message);
+                Console.WriteLine(serializeMsg);
+                
+                for (;;)
+                {
+                    ws.Send(serializeMsg);
+                    Thread.Sleep(30000);
+                }
+                
+            }
+            if (type.Equals("Humidity"))
+            { 
+                string minInhex = min.ToString("X4");
+                string maxInhex = max.ToString("X4");
+                string s = string.Concat(minInhex, maxInhex);
+                var message = new DLinkMessage()
+                {
+                    cmd = "tx",
+                    EUI = eui,
+                    port = 11,
+                    confirmed = true,
+                    data = s
+                
+                };
+           
+            
+                string serializeMsg  = JsonSerializer.Serialize(message);
+                Console.WriteLine(serializeMsg);
+                
+                for (;;)
+                {
+                    ws.Send(serializeMsg);
+                    Thread.Sleep(30000);
+                }
+                
+            }
+            if (type == "Light")
+            { var message = new DLinkMessage()
+                {
+                    cmd = "tx",
+                    EUI = eui,
+                    port = 13,
+                    confirmed = true,
+                    data = "123C123D"
+                
+                };
+           
+            
+                string serializeMsg  = JsonSerializer.Serialize(message);
+                Console.WriteLine(serializeMsg);
+                
+                for (;;)
+                {
+                    ws.Send(serializeMsg);
+                    Thread.Sleep(30000);
+                }
+                
+            }
+
             
         }
 
