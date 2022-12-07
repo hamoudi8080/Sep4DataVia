@@ -16,4 +16,11 @@ public class Measurement
     public decimal CO2 { get; set; }
         
     public decimal Light { get; set; }
+    public override string ToString()
+    {
+        return $"Humidity {Humidity}, CO2 {CO2}, Light {Light}, Temperature {Temperature}\n";
+
+    }
 }
+
+ 
