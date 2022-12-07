@@ -8,6 +8,8 @@ public class Co2Threshold
     [Key]
     public int Id { get; set; }
     
+    
+    [Range(10,100)]
     public decimal CO2Level { get; set; }
     public DateTime TimeStamp { get; set; }
         
