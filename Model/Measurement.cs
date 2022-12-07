@@ -7,19 +7,25 @@ public class Measurements
     [Key]
     public int MeasureId { get; set; }
     
-    [Required]
+  
     public DateTime Timestamp { get; set; }
 
-    [Required]
-    public float Temperature { get; set; }
-    [Required]
-    public int Humidity { get; set; }
 
-    [Required]
-    public int Co2 { get; set; }
+    public Decimal Temperature { get; set; }
+
+    public Decimal Humidity { get; set; }
+
+
+    public Decimal Co2 { get; set; }
     
-    [Required]
+
     public decimal LightLevel { get; set; }
+    
+    public override string ToString()
+    {
+        return $"MEASUREMENT => TIMESTAMP = {Timestamp}," +
+               $" TEMPERATURE = {Temperature}, HUMIDITY = {Humidity}, CO2 = {Co2}";
+    }
     
     
 }

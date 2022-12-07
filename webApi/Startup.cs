@@ -29,6 +29,7 @@ namespace WebAPI
             // services.AddDbContextPool<MushroomDatabase>(option=>option.UseSqlServer());
 
             services.AddScoped<IMeasurement, MeasurementDao>();
+            services.AddScoped<ICo2Threshhold, CO2Dao>();
             services.AddDbContext<DataAccess1>();
 
         }

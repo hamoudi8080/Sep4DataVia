@@ -12,7 +12,13 @@ public class MashroomRoom
     
     [StringLength(50)] 
     public string name { get; set; }
-    
-    [JsonIgnore]
-    public ICollection<Measurements> Measurements { get; set; } 
+
+
+
+
+
+    public IList<Measurements?> Measurements { get; set; } = new List<Measurements?>();
+
+
+
 }

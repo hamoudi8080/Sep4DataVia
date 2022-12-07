@@ -16,19 +16,9 @@ public class MushroomController:ControllerBase
         _mashroomServices = plantService;
     }
     
-    [HttpPost]
+   
     
-    public async Task<ActionResult<MashroomRoom>> PostPlantAsync([FromBody] MashroomRoom plant)
-    {
-       
-        try
-        {
-            var added = await _mashroomServices.PostMushroomAsync(plant);
-            return Created($"/{added.MusId}", added);
-        }
-        catch (Exception e)
-        {
-            return StatusCode(500, e.Message);
-        }
-    }
+    
+    
+    
 }

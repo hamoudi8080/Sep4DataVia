@@ -27,18 +27,18 @@ namespace webApi.Migrations
                 name: "Measurements",
                 columns: table => new
                 {
-                    SettingId = table.Column<int>(type: "int", nullable: false)
+                    MeasureId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Temperature = table.Column<float>(type: "real", nullable: false),
-                    Humidity = table.Column<int>(type: "int", nullable: false),
-                    Co2 = table.Column<int>(type: "int", nullable: false),
+                    Temperature = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Humidity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Co2 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     LightLevel = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     MashroomRoomMusId = table.Column<string>(type: "nvarchar(50)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Measurements", x => x.SettingId);
+                    table.PrimaryKey("PK_Measurements", x => x.MeasureId);
                     table.ForeignKey(
                         name: "FK_Measurements_MushroomRooms_MashroomRoomMusId",
                         column: x => x.MashroomRoomMusId,

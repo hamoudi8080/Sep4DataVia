@@ -12,8 +12,8 @@ using WebAPI.EfcData.DataAccess;
 namespace webApi.Migrations
 {
     [DbContext(typeof(DataAccess1))]
-    [Migration("20221206102737_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20221206231411_InitialCreate1")]
+    partial class InitialCreate1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,19 +41,19 @@ namespace webApi.Migrations
                     b.ToTable("MushroomRooms");
                 });
 
-            modelBuilder.Entity("Model.Measurement", b =>
+            modelBuilder.Entity("Model.Measurements", b =>
                 {
-                    b.Property<int>("SettingId")
+                    b.Property<int>("MeasureId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SettingId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MeasureId"));
 
-                    b.Property<int>("Co2")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Co2")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Humidity")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Humidity")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("LightLevel")
                         .HasColumnType("decimal(18,2)");
@@ -61,20 +61,20 @@ namespace webApi.Migrations
                     b.Property<string>("MashroomRoomMusId")
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<float>("Temperature")
-                        .HasColumnType("real");
+                    b.Property<decimal>("Temperature")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("SettingId");
+                    b.HasKey("MeasureId");
 
                     b.HasIndex("MashroomRoomMusId");
 
                     b.ToTable("Measurements");
                 });
 
-            modelBuilder.Entity("Model.Measurement", b =>
+            modelBuilder.Entity("Model.Measurements", b =>
                 {
                     b.HasOne("Model.MashroomRoom", null)
                         .WithMany("Measurements")

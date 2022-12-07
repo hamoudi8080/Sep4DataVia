@@ -2,7 +2,9 @@
 
 public interface IMushroom
 {
-    Task<MashroomRoom> PostMushroomAsync(MashroomRoom mushroom);
+    Task<MashroomRoom> GetMeasurementById(MashroomRoom mushroom);
    
     Task<MashroomRoom> DeleteMushroomAsync(string mui);
+    
+    
 }

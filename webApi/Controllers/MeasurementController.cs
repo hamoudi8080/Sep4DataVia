@@ -10,38 +10,55 @@ namespace WebAPI.Controllers;
 [Route("[controller]")]
 public class MeasurementController:ControllerBase
 {
-    private readonly IMeasurement _measurementService;
+    private readonly IMeasurement measurementService;
     
         
     public MeasurementController(IMeasurement measurementService)
     {
-        _measurementService = measurementService;
+        measurementService = measurementService;
        
     }
     
-    [HttpPost]
-    public async Task<ActionResult<IEnumerable<Measurements>>> AddMeasurements(
-        [FromBody] PostMeasurement measurements)
+    [HttpGet]
+    public async Task<ActionResult<Measurements>> GetLastMeasurement([FromQuery] string mui)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
         try
         {
-            
-            var measurementsWithoutDuplicates = RemoveDuplicateMeasurements(measurements.Measurements);
-            await _measurementService.AddMeasurements(measurements.Mui, measurementsWithoutDuplicates);
-            return Ok();
-        }
-        catch (ArgumentException e)
-        {
-            return BadRequest(e.Message);
+            var t = await measurementService.GetMeasurementAsync(mui);
+            return Ok(t);
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            return StatusCode(500, e.Message);
+            Console.WriteLine(e.Message);
+            return e.Message.Equals("MeasurementNotFound") ? NotFound(e.Message) : StatusCode(500, e.Message);
         }
     }
-    
-    private IEnumerable<Measurements> RemoveDuplicateMeasurements(IEnumerable<Measurements> measurements)
+
+    [HttpGet]
+    [Route("history")]
+    public async Task<ActionResult<IList<Measurements>>> GetListOfMeasurements([FromQuery] string mui)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        try
+        {
+            var t = await measurementService.GetMeasurementHistoryAsync(mui);
+            return Ok(t);
+        }
+        catch (Exception e)
+        {
+            return e.Message.Equals("MeasurementNotFound") ? NotFound(e.Message) : StatusCode(500, e.Message);
+        }
+    }
+
+   private IEnumerable<Measurements> RemoveDuplicateMeasurements(IEnumerable<Measurements> measurements)
     {
         var measurementsToReturn = new List<Measurements>();
         var encounteredTimestamps = new Dictionary<DateTime, DateTime>();

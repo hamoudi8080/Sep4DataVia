@@ -46,11 +46,11 @@ namespace webApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MeasureId"));
 
-                    b.Property<int>("Co2")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Co2")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Humidity")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Humidity")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("LightLevel")
                         .HasColumnType("decimal(18,2)");
@@ -58,8 +58,8 @@ namespace webApi.Migrations
                     b.Property<string>("MashroomRoomMusId")
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<float>("Temperature")
-                        .HasColumnType("real");
+                    b.Property<decimal>("Temperature")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");

@@ -25,7 +25,12 @@ public class MushroomDao:IMushroom
 
     }
 
- 
+
+    public Task<MashroomRoom> GetMeasurementById(MashroomRoom mushroom)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<MashroomRoom> DeleteMushroomAsync(string mui)
     {
         var mashroom=dbContext.MushroomRooms.Include(m => m.Measurements)
