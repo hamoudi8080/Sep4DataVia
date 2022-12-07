@@ -16,7 +16,11 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
 
         private string Url =
            "wss://iotnet.teracom.dk/app?token=vnoUeQAAABFpb3RuZXQudGVyYWNvbS5kayL9sv9it8LFL5jggp-rve4=";
-        private ILoriotService _loriotService;
+
+
+        private string eui = "0004A30B00E7E7C1";
+        
+        private ILoRaWANService _loriotService;
 
         public static WebSocketClient Instance => lazy.Value;
 
@@ -25,7 +29,7 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
         // those are event handlers that we can subscribe to.
         private WebSocketClient()
         {
-            _loriotService = new LoriotImp();
+            _loriotService = new LoRaWANServiceImp();
             ws = new WebSocket(Url);
             ws.OnOpen += OnOpen;
             ws.OnMessage += OnMessage;
@@ -39,17 +43,17 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
             Console.WriteLine("GATEWAY CONTROLLER => ERROR OCCURED: " + e.Message);
         }
 
-        public void SendDownLinkMessage(string eui, int toOpen)
+        public void SendDownLinkMessage( )
         {
-            string data = toOpen == 1 ? "01" : "00";
+             
 
             var message = new DLinkMessage()
             {
                 cmd = "tx",
                 EUI = eui,
-                port = 1,
+                port = 5,
                 confirmed = true,
-                data = data
+                data = "123C123D"
             };
             //serialize the message 
             // DLinkMessage m = new DLinkMessage();
@@ -61,7 +65,13 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
             
             string serializeMsg  = JsonSerializer.Serialize(message);
             Console.WriteLine(serializeMsg);
-            ws.Send(serializeMsg);
+
+            for (;;)
+            {
+                ws.Send(serializeMsg);
+                Thread.Sleep(30000);
+            }
+            
         }
 
         public void GetCacheReadings()
@@ -86,11 +96,21 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
         // MEA = all the arguments contained in that msg / e=event
         private void OnMessage(object? sender, MessageEventArgs e)
         {
-            Console.WriteLine("Received from the server: " + e.Data);
-            var message = JsonSerializer.Deserialize<IOTMessage>(e.Data);
+          
+          
+          
+              Console.WriteLine("Received from the server: " + e.Data);
+              var message = JsonSerializer.Deserialize<IOTMessage>(e.Data);
 
-            Console.WriteLine($"GATEWAY CONTROLLER => {message}");
-          _loriotService.HandlingMessage(message);
+              
+              if (message.port != 0)
+              {
+                  Console.WriteLine($"GATEWAY CONTROLLER => {message}");
+                  _loriotService.HandlingMessage(message);
+              }
+              
+
+      
         }
 
         

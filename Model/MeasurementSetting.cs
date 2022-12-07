@@ -9,6 +9,7 @@ public class MeasurementSetting
     public int MeasurementId { get; set; }
     
     public string MusId { get; set; }
+    
     [Required]
     public DateTime TimeStamp { get; set; }
 

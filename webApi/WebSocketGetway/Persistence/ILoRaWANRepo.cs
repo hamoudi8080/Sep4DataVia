@@ -5,7 +5,7 @@ using Entities;
 
 namespace WebAPI.Gateway.Persistence
 {
-    public interface ILoriotRepo
+    public interface ILoRaWANRepo
     {
         // Task AddTemperatureAsync(Temperature temperature);
         // Task AddHumidityAsync(Humidity humidity);
