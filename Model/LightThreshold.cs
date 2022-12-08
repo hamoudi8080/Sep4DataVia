@@ -10,10 +10,10 @@ public class LightThreshold
     public decimal LightLevel { get; set; }
     public DateTime TimeStamp { get; set; }
         
-    public string EUI { get; set; }
+    public string MusId { get; set; }
 
     public override string ToString()
     {
-        return $"Light: TIMESTAMP: {TimeStamp}, Light level: {LightLevel}, ID: {Id},EUI: {EUI}";
+        return $"Light: TIMESTAMP: {TimeStamp}, Light level: {LightLevel}, ID: {Id},MUSID: {MusId}";
     }
 }

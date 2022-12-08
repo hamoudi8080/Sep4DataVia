@@ -12,65 +12,15 @@ namespace WebAPI.Gateway.Service
         public Measurement CreateMeasurement(IOTMessage message)
         {
             var measurement = new Measurement();
-            measurement.Temperature = (decimal)GetDecimal(message.data,0);
-            measurement.Humidity = (decimal)GetDecimal(message.data,4);
-            measurement.CO2 = (decimal)GetDecimal(message.data,8);
-            measurement.Light = (decimal)GetDecimal(message.data,12);
+            measurement.Temperature = CreateTemperature(message).TemperatureInDegrees;
+            measurement.Humidity = CreateHumidity(message).RelativeHumidity;
+            measurement.CO2 = CreateCo2(message).CO2Level;
+            measurement.Light = CreateLight(message).LightLevel;
             measurement.TimeStamp = DateTimeOffset.FromUnixTimeMilliseconds(message.ts).DateTime;
-            Console.WriteLine(measurement.ToString());
             return measurement;
         }
-
-        public decimal? GetDecimal(string numberInHex, int charStartingPoint)
-        {
-            String hexString = numberInHex;
-
-            // simplified conversion, without considering a floating point
-            int number = int.Parse(hexString.Substring(charStartingPoint, 4), System.Globalization.NumberStyles.HexNumber);
-            Console.WriteLine($"NUMBAAAAAAA: {number}");
-            return number;
-        }
-
-        public decimal? CreateHumidity(IOTMessage message)
-        {
-            String hexString = message.data;
-            
-           // simplified conversion, without considering a floating point
-           //Byte[0]
-           int number = int.Parse(hexString.Substring(0, 4), System.Globalization.NumberStyles.HexNumber);
-           Console.WriteLine($"NUMBAAAAAAA: {number}");
-           return number;
-
-           /* it is parsing the bytes into int and resulting in a floating number, like f.x. 45.5 of humidity
-           //Byte[0]
-           int dec = int.Parse(hexString.Substring(0, 4), System.Globalization.NumberStyles.HexNumber);
-          
-           //Byte[1]
-           int point = int.Parse(hexString.Substring(2,2), System.Globalization.NumberStyles.HexNumber);
-           
-           Console.WriteLine($"Decimal: {dec} Point: {point}");
-           decimal number = (decimal) (dec + (point / 100.0));
-           
-           return number;
-           */
-
-        }
-
-        public decimal? CreateTemperature(IOTMessage message){
-            String hexString = message.data;
-            
-            return null;
-        }
-
-        public decimal? CreateCo2(IOTMessage message)
-        {
-            String hexString = message.data;
-
-            return null;
-
-        }
-
-        public decimal? Light(IOTMessage message)
+        
+        public Temperature CreateTemperature(IOTMessage message)
         {
             String hexString = message.data;
             
@@ -83,8 +33,56 @@ namespace WebAPI.Gateway.Service
             Console.WriteLine($"Decimal: {dec} Point: {point}");
             decimal number = (decimal) (dec + (point / 100.0));
             Console.WriteLine($"NUMBAAAAAAA: {number}");
+            
+            return new()
+            {
+                TemperatureInDegrees = number,
+                TimeStamp = DateTimeOffset.FromUnixTimeMilliseconds(message.ts).DateTime,
+                EUI = message.EUI
+            }; 
+        }
 
-            return number;
+        public Humidity CreateHumidity(IOTMessage message)
+        {
+            String hexString = message.data;
+            //Byte[2]
+            int humidity = int.Parse(hexString.Substring(4,2), System.Globalization.NumberStyles.HexNumber);
+            return new Humidity()
+            {
+                EUI = message.EUI,
+                TimeStamp = DateTimeOffset.FromUnixTimeMilliseconds(message.ts).DateTime,
+                RelativeHumidity = humidity
+            };
+        }
+
+        public COTwo CreateCo2(IOTMessage message)
+        {
+            String hexString = message.data;
+            int co2Level = int.Parse(hexString.Substring(6,4), System.Globalization.NumberStyles.HexNumber);
+            
+            return new()
+            {
+                EUI = message.EUI,
+                TimeStamp = DateTimeOffset.FromUnixTimeMilliseconds(message.ts).DateTime,
+                CO2Level = co2Level
+            };
+        }
+
+        public Light CreateLight(IOTMessage message)
+        {
+            String hexString = message.data;
+            
+            //Byte[5]&[6] which is the integer part
+            int numbaaa = int.Parse(hexString.Substring(10), System.Globalization.NumberStyles.HexNumber);
+            
+            Console.WriteLine($"NUMBAAAAAAA: {numbaaa}");
+
+            return new Light()
+            {
+                EUI = message.EUI,
+                TimeStamp = DateTimeOffset.FromUnixTimeMilliseconds(message.ts).DateTime,
+                LightLevel = numbaaa
+            };
         }
         
     }

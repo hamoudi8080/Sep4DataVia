@@ -16,11 +16,7 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
 
         private string Url =
            "wss://iotnet.teracom.dk/app?token=vnoUeQAAABFpb3RuZXQudGVyYWNvbS5kayL9sv9it8LFL5jggp-rve4=";
-
-
-        private string eui = "0004A30B00E7E7C1";
-        
-        private ILoRaWANService _loriotService;
+        private ILoriotService _loriotService;
 
         public static WebSocketClient Instance => lazy.Value;
 
@@ -29,7 +25,7 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
         // those are event handlers that we can subscribe to.
         private WebSocketClient()
         {
-            _loriotService = new LoRaWANServiceImp();
+            _loriotService = new LoriotImp();
             ws = new WebSocket(Url);
             ws.OnOpen += OnOpen;
             ws.OnMessage += OnMessage;
@@ -42,116 +38,30 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
         {
             Console.WriteLine("GATEWAY CONTROLLER => ERROR OCCURED: " + e.Message);
         }
-        private string type = "Humidity";
 
-        private int min = 20;
-        private int max = 50;
-        public void SendDownLinkMessage( )
+        public void SendDownLinkMessage(string eui, int toOpen)
         {
+            string data = toOpen == 1 ? "01" : "00";
 
-
-            if (type.Equals("Co2"))
+            var message = new DLinkMessage()
             {
-               
-                string minInhex = min.ToString("X4");
-                string maxInhex = max.ToString("X4");
-                string s = string.Concat(minInhex, maxInhex);
-                var message = new DLinkMessage()
-                {
-                    cmd = "tx",
-                    EUI = eui,
-                    port = 10,
-                    confirmed = true,
-                    data = s
-                
-                };
-           
+                cmd = "tx",
+                EUI = eui,
+                port = 1,
+                confirmed = true,
+                data = data
+            };
+            //serialize the message 
+            // DLinkMessage m = new DLinkMessage();
+            // m.EUI = "hello";
+            // m.cmd = "key";
+            // m.data = "hello there";
+            // m.port = 1;
+            // m.confirmed = true;
             
-                string serializeMsg  = JsonSerializer.Serialize(message);
-                Console.WriteLine(serializeMsg);
-                
-                for (;;)
-                {
-                    ws.Send(serializeMsg);
-                    Thread.Sleep(30000);
-                }
-            }
-            if (type == "Termperature")
-            { 
-                string minInhex = min.ToString("X4");
-                string maxInhex = max.ToString("X4");
-                string s = string.Concat(minInhex, maxInhex);
-                var message = new DLinkMessage()
-                {
-                    cmd = "tx",
-                    EUI = eui,
-                    port = 12,
-                    confirmed = true,
-                    data = "123C123D"
-                
-                };
-           
-            
-                string serializeMsg  = JsonSerializer.Serialize(message);
-                Console.WriteLine(serializeMsg);
-                
-                for (;;)
-                {
-                    ws.Send(serializeMsg);
-                    Thread.Sleep(30000);
-                }
-                
-            }
-            if (type.Equals("Humidity"))
-            { 
-                string minInhex = min.ToString("X4");
-                string maxInhex = max.ToString("X4");
-                string s = string.Concat(minInhex, maxInhex);
-                var message = new DLinkMessage()
-                {
-                    cmd = "tx",
-                    EUI = eui,
-                    port = 11,
-                    confirmed = true,
-                    data = s
-                
-                };
-           
-            
-                string serializeMsg  = JsonSerializer.Serialize(message);
-                Console.WriteLine(serializeMsg);
-                
-                for (;;)
-                {
-                    ws.Send(serializeMsg);
-                    Thread.Sleep(30000);
-                }
-                
-            }
-            if (type == "Light")
-            { var message = new DLinkMessage()
-                {
-                    cmd = "tx",
-                    EUI = eui,
-                    port = 13,
-                    confirmed = true,
-                    data = "123C123D"
-                
-                };
-           
-            
-                string serializeMsg  = JsonSerializer.Serialize(message);
-                Console.WriteLine(serializeMsg);
-                
-                for (;;)
-                {
-                    ws.Send(serializeMsg);
-                    Thread.Sleep(30000);
-                }
-                
-            }
-
-            
+            string serializeMsg  = JsonSerializer.Serialize(message);
+            Console.WriteLine(serializeMsg);
+            ws.Send(serializeMsg);
         }
 
         public void GetCacheReadings()
@@ -176,21 +86,11 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
         // MEA = all the arguments contained in that msg / e=event
         private void OnMessage(object? sender, MessageEventArgs e)
         {
-          
-          
-          
-              Console.WriteLine("Received from the server: " + e.Data);
-              var message = JsonSerializer.Deserialize<IOTMessage>(e.Data);
+            Console.WriteLine("Received from the server: " + e.Data);
+            var message = JsonSerializer.Deserialize<IOTMessage>(e.Data);
 
-              
-              if (message.port != 0)
-              {
-                  Console.WriteLine($"GATEWAY CONTROLLER => {message}");
-                  _loriotService.HandlingMessage(message);
-              }
-              
-
-      
+            Console.WriteLine($"GATEWAY CONTROLLER => {message}");
+          _loriotService.HandlingMessage(message);
         }
 
         

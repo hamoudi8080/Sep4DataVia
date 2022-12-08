@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI.Gateway.Persistence
 {
-    public class LoRaWANRepo : ILoRaWANRepo
+    public class LoriotRepo : ILoriotRepo
     {
         public async Task AddMeasurement(Measurement measurement, string eui)
         {
