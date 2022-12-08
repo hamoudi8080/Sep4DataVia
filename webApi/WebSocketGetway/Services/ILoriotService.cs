@@ -2,7 +2,7 @@
 
 namespace WebAPI.WebSocketGetway.Services
 {
-    public interface ILoRaWANService
+    public interface ILoriotService
     {
         public Task HandlingMessage(IOTMessage message);
     }
