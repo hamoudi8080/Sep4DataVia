@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "BKH26OJm/a4xEYzPZwOloKhXorGAqAvHuZoaK3234HPit327hFxGDqry03WGXSLnrFGdPXg0iGWiLZCEr/uVmQ==",
+  "dgSpecHash": "7hkDcztB3H+UCkxRt/8nX39XxZTPgVkKp7Z30W99s/+nl8A8osEw4NWFIjLUr0MaXEemoD4mXaHIRkdxNlbz/g==",
   "success": true,
-  "projectFilePath": "C:\\Sep4DataVia\\Model\\Model.csproj",
+  "projectFilePath": "C:\\Users\\hamod\\RiderProjects\\sep4Rider\\Model\\Model.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Bruger\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.0\\microsoft.entityframeworkcore.abstractions.7.0.0.nupkg.sha512"
+    "C:\\Users\\hamod\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.0\\microsoft.entityframeworkcore.abstractions.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }

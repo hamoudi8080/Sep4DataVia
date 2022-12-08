@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Entities;
+using Model;
 
 
 namespace WebAPI.Gateway.Persistence
 {
-    public interface ILoriotRepo
+    public interface ILoRaWANRepo
     {
         // Task AddTemperatureAsync(Temperature temperature);
         // Task AddHumidityAsync(Humidity humidity);
         // Task AddCo2Async(COTwo co2);
-        Task AddMeasurement(Measurement measurement, string eui);
+        Task AddMeasurement(Measurements measurement, string eui);
     }
 }

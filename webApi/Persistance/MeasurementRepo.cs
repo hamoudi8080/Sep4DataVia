@@ -1,16 +1,17 @@
-﻿using Entities;
+﻿ 
+using Model;
 using WebAPI.Persistance.Interface;
 
 namespace WebAPI.Persistance;
 
 public class MeasurementRepo : IMeasurementRepo
 {
-    public Task<Measurement> GetMeasurementAsync(string eui)
+    public Task<Measurements? > GetMeasurementAsync(string eui)
     {
         throw new NotImplementedException();
     }
 
-    public Task<List<Measurement>> GetMeasurementHistoryAsync(string eui)
+    public Task<List<Measurements>> GetMeasurementHistoryAsync(string eui)
     {
         throw new NotImplementedException();
     }

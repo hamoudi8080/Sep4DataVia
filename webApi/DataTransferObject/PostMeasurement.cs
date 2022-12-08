@@ -1,5 +1,4 @@
-﻿using Entities;
-using Model;
+﻿using Model;
 
 namespace WebAPI.DataTransferObject;
 

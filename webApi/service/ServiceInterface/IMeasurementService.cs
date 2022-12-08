@@ -1,9 +1,10 @@
-﻿using Entities;
+﻿ 
+using Model;
 
 namespace WebAPI.service.ServiceInterface;
 
 public interface IMeasurementService
 {
-    Task<Measurement> GetMeasurementAsync(string eui);
-    Task<List<Measurement>> GetMeasurementHistoryAsync(string eui);
+    Task<Measurements> GetMeasurementAsync(string eui);
+    Task<List<Measurements>> GetMeasurementHistoryAsync(string eui);
 }

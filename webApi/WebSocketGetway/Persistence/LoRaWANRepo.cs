@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Entities;
+ 
 using Microsoft.EntityFrameworkCore;
-
+using Model;
 
 namespace WebAPI.Gateway.Persistence
 {
-    public class LoriotRepo : ILoriotRepo
+    public class LoRaWANRepo : ILoRaWANRepo
     {
-        public async Task AddMeasurement(Measurement measurement, string eui)
+        public async Task AddMeasurement(Measurements measurement, string eui)
         {
             // await using var database = new Database();
             //

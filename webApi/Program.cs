@@ -51,9 +51,9 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        DummyClass d = new DummyClass();
-        d.s();
-
+        // DummyClass d = new DummyClass();
+        // d.s();
+        //
         
         
         

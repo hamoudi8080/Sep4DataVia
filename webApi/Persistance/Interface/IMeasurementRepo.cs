@@ -1,9 +1,11 @@
-﻿using Entities;
+﻿ 
+using System.Diagnostics.Metrics;
+using Model;
 
 namespace WebAPI.Persistance.Interface;
 
 public interface IMeasurementRepo
 {
-    Task<Measurement> GetMeasurementAsync(string eui);
-    Task<List<Measurement>> GetMeasurementHistoryAsync(string eui);
+    Task<Measurements> GetMeasurementAsync(string eui);
+    Task<List<Measurements>>GetMeasurementHistoryAsync(string eui);
 }

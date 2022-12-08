@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using System.Diagnostics.Metrics;
+using Model;
 using WebAPI.service.ServiceInterface;
 
 namespace WebAPI.service;
@@ -7,12 +8,12 @@ public class MeasurementService : IMeasurementService
 {
     
     
-    public Task<Measurement> GetMeasurementAsync(string eui)
+    public Task<Measurements> GetMeasurementAsync(string eui)
     {
         throw new NotImplementedException();
     }
 
-    public Task<List<Measurement>> GetMeasurementHistoryAsync(string eui)
+    public Task<List<Measurements>> GetMeasurementHistoryAsync(string eui)
     {
         throw new NotImplementedException();
     }
