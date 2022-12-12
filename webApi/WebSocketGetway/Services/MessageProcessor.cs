@@ -13,7 +13,7 @@ namespace WebAPI.Gateway.Service
             var measurement = new Measurements();
             measurement.Temperature = (decimal)GetDecimal(message.data,0);
             measurement.Humidity = (decimal)GetDecimal(message.data,4);
-            measurement.Co2 = (decimal)GetDecimal(message.data,8);
+            measurement.Co2Level = (decimal)GetDecimal(message.data,8);
             measurement.LightLevel = (decimal)GetDecimal(message.data,12);
             measurement.Timestamp = DateTimeOffset.FromUnixTimeMilliseconds(message.ts).DateTime;
             Console.WriteLine(measurement.ToString());
