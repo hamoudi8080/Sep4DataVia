@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAPI.EfcData.DataAccess;
 
@@ -11,9 +12,11 @@ using WebAPI.EfcData.DataAccess;
 namespace webApi.Migrations
 {
     [DbContext(typeof(DataAccess1))]
-    partial class DataAccess1ModelSnapshot : ModelSnapshot
+    [Migration("20221209144045_databaseUpgration2")]
+    partial class databaseUpgration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

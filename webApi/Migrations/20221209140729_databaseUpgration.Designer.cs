@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAPI.EfcData.DataAccess;
 
@@ -11,9 +12,11 @@ using WebAPI.EfcData.DataAccess;
 namespace webApi.Migrations
 {
     [DbContext(typeof(DataAccess1))]
-    partial class DataAccess1ModelSnapshot : ModelSnapshot
+    [Migration("20221209140729_databaseUpgration")]
+    partial class databaseUpgration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,11 +76,9 @@ namespace webApi.Migrations
 
             modelBuilder.Entity("Model.Measurements", b =>
                 {
-                    b.HasOne("Model.MashroomRoom", "MashroomRoom")
+                    b.HasOne("Model.MashroomRoom", null)
                         .WithMany("Measurements")
                         .HasForeignKey("MashroomRoomMusId");
-
-                    b.Navigation("MashroomRoom");
                 });
 
             modelBuilder.Entity("Model.MashroomRoom", b =>

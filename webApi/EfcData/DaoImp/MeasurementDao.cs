@@ -28,10 +28,12 @@ public class MeasurementDao : IMeasurement
     {
         var mashroom = await dbContext.MushroomRooms.Include(m => m.Measurements)
             .FirstOrDefaultAsync(m => m.MusId.Equals(mui));
+        
+        Console.WriteLine("inside dao");
        
         if (mashroom == null)
         {
-            throw new Exception("data NotFound");
+            throw new Exception("data Not Found");
         }
 
         var measurement = mashroom.Measurements.LastOrDefault();
@@ -47,7 +49,7 @@ public class MeasurementDao : IMeasurement
 
     public async Task<List<Measurements>> GetMeasurementHistoryAsync(string mui)
     {
-        var dateTime = DateTime.Now.AddDays(-45);
+        var dateTime = DateTime.Now.AddDays(-30);
 
         var mashroom = await dbContext.MushroomRooms.Include(m => m.Measurements)
             .FirstOrDefaultAsync(m => m.MusId.Equals(mui));

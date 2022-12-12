@@ -16,22 +16,25 @@ public class MushroomDao:IMushroom
     }
 
 
-    public async Task<MashroomRoom> PostMushroomAsync(MashroomRoom mushroom)
-    {
-        EntityEntry<MashroomRoom> added = await dbContext.MushroomRooms.AddAsync(mushroom);
-        await dbContext.SaveChangesAsync();
-        return added.Entity;
-        
+    
 
+    
+
+    public async Task<MashroomRoom> PostPlantAsync(MashroomRoom mashroomRoom)
+    {
+        EntityEntry<MashroomRoom> data = await dbContext.MushroomRooms.AddAsync(mashroomRoom);
+        
+        await dbContext.SaveChangesAsync();
+        Console.WriteLine("Check Data ");
+        return data.Entity;
     }
 
-
-    public Task<MashroomRoom> GetMeasurementById(MashroomRoom mushroom)
+    public Task<MashroomRoom> GetPlantByDeviceAsync(string mui)
     {
         throw new NotImplementedException();
     }
 
-    public async Task<MashroomRoom> DeleteMushroomAsync(string mui)
+    public async Task<MashroomRoom> DeletePlantAsync(string mui)
     {
         var mashroom=dbContext.MushroomRooms.Include(m => m.Measurements)
             .FirstOrDefault(m => m.MusId.Equals(mui));
@@ -41,8 +44,8 @@ public class MushroomDao:IMushroom
         }
 
         dbContext.Measurements.RemoveRange(mashroom.Measurements);
-                dbContext.MushroomRooms.Remove(mashroom);
-            await dbContext.SaveChangesAsync();
-            return mashroom;
-        }
+        dbContext.MushroomRooms.Remove(mashroom);
+        await dbContext.SaveChangesAsync();
+        return mashroom;
     }
+}

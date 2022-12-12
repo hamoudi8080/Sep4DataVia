@@ -15,7 +15,7 @@ public class MeasurementController:ControllerBase
         
     public MeasurementController(IMeasurement measurementService)
     {
-        measurementService = measurementService;
+        this.measurementService = measurementService;
        
     }
     
