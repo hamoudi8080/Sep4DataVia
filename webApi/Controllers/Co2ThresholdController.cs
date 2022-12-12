@@ -41,7 +41,7 @@ public class Co2ThreshholdController:ControllerBase
     
     [HttpGet]
     [Route("history")]
-    public async Task<ActionResult<IList<Co2Threshold>>> GetListOfTemperatures([FromQuery] string mui)
+    public async Task<ActionResult<IList<Co2Threshold>>> GetListOfCo2([FromQuery] string mui)
     {
         if (!ModelState.IsValid)
         {
@@ -49,8 +49,9 @@ public class Co2ThreshholdController:ControllerBase
         }
         try
         {
-            var t = await co2Services.GetListOfCo2Async(mui);
-            return Ok(t);
+            
+            var co2 = await co2Services.GetListOfCo2Async(mui);
+            return Ok(co2);
         }
         catch (Exception e)
         {

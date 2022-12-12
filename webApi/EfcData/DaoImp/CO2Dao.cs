@@ -38,7 +38,7 @@ public class CO2Dao:ICo2Threshhold
         var co2 = new Co2Threshold()
         {
             Id = measurement.MeasureId,
-            CO2Level = measurement.Co2,
+            Co2Level = measurement.Co2Level,
             MUSID = mui,
             TimeStamp = measurement.Timestamp
         };
@@ -48,7 +48,7 @@ public class CO2Dao:ICo2Threshhold
 
     public async Task<IList<Co2Threshold>> GetListOfCo2Async(string mui)
     {
-        DateTime dateTime = DateTime.Now.AddDays(-10);
+        DateTime dateTime = DateTime.Now.AddDays(-30);
         
         var mushroom = await dbContext.MushroomRooms.Include(p => p.Measurements)
             .FirstOrDefaultAsync(p => p.MusId.Equals(mui));
@@ -64,7 +64,7 @@ public class CO2Dao:ICo2Threshhold
         if (!measurements.Any())
             throw new Exception("MeasurementNotFound");
         return measurements.Select(m => new Co2Threshold() 
-                {CO2Level = m.Co2, MUSID = mui, TimeStamp = m.Timestamp, Id = m.MeasureId})
+                {Co2Level = m.Co2Level, MUSID = mui, TimeStamp = m.Timestamp, Id = m.MeasureId})
             .ToList();
     }
 

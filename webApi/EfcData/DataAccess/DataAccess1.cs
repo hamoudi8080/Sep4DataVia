@@ -1,12 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Model;
+using Model.Contract;
 
 namespace WebAPI.EfcData.DataAccess;
 
 public class DataAccess1:DbContext
 {
     public DbSet<MashroomRoom>? MushroomRooms { get; set; }
-    public DbSet<Measurements> Measurements { get; set; }
+    public DbSet<MeasurementThreshold> MeasurementThresholds { get; set; }
+    public DbSet<Measurements> Measurements { get; set; }   
     
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -26,4 +28,12 @@ public class DataAccess1:DbContext
         */
 
     }
+    
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        
+    }
+    
+    
 }

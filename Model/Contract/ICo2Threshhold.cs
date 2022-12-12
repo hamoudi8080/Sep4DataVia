@@ -5,5 +5,5 @@ public interface ICo2Threshhold
     Task<Co2Threshold> GetCO2Async(string mui);
     Task<IList<Co2Threshold>> GetListOfCo2Async(string mui);
 
-    public Task<ICollection<Co2Threshold>> GetCoo2Async(string mui);
+
 }

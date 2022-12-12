@@ -46,7 +46,7 @@ namespace webApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MeasureId"));
 
-                    b.Property<decimal>("Co2")
+                    b.Property<decimal>("Co2Level")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Humidity")
@@ -73,9 +73,11 @@ namespace webApi.Migrations
 
             modelBuilder.Entity("Model.Measurements", b =>
                 {
-                    b.HasOne("Model.MashroomRoom", null)
+                    b.HasOne("Model.MashroomRoom", "MashroomRoom")
                         .WithMany("Measurements")
                         .HasForeignKey("MashroomRoomMusId");
+
+                    b.Navigation("MashroomRoom");
                 });
 
             modelBuilder.Entity("Model.MashroomRoom", b =>
