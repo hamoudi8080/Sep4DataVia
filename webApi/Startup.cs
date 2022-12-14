@@ -4,8 +4,7 @@ using Microsoft.OpenApi.Models;
 using Model.Contract;
 using WebAPI.EfcData.DaoImp;
 using WebAPI.EfcData.DataAccess;
-using WebAPI.Persistance;
-using WebAPI.Persistance.Interface;
+
 using WebAPI.WebSocketGetway.Services;
 
 namespace WebAPI
@@ -23,11 +22,12 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" }); });
             //services.AddScoped<IMeasurementService, MeasurementService>();
             //services.AddScoped<IMeasurementRepo, MeasurementRepo>();
-            services.AddScoped<IMeasurementRepo, MeasurementRepo>();
+            
             services.AddScoped<ILoRaWANService, LoRaWANServiceImp>();
             // services.AddDbContextPool<MushroomDatabase>(option=>option.UseSqlServer());
 

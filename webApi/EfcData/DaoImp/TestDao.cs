@@ -36,7 +36,7 @@ public class TestDao:ICo2Threshhold
         var co2 = new Co2Threshold()
         {
             Id = measurement.MeasureId,
-            Co2Level = measurement.Co2Level,
+            Co2Level = measurement.Co2,
             MUSID = mui,
             TimeStamp = measurement.Timestamp
         };

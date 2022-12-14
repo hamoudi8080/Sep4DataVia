@@ -19,7 +19,7 @@ namespace WebAPI.Gateway.Persistence
 
         public async Task<Measurement> AddMeasurement(Measurement measurement)
         {
-            EntityEntry<Measurement> addEntity = await dbContext.Measurements.AddAsync(measurement);
+            EntityEntry<Measurement> addEntity = await dbContext.Measurement.AddAsync(measurement);
 
             await dbContext.SaveChangesAsync();
             return addEntity.Entity;

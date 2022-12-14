@@ -14,7 +14,7 @@ public class MashroomRoom
     [StringLength(50)] 
     public string name { get; set; }
     
-    public IList<Measurements?> Measurements { get; set; } = new List<Measurements?>();
+    public IList<Measurement?> Measurements { get; set; } = new List<Measurement?>();
 
     public MashroomRoom()
     {
