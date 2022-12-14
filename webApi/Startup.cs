@@ -4,8 +4,8 @@ using Microsoft.OpenApi.Models;
 using Model.Contract;
 using WebAPI.EfcData.DaoImp;
 using WebAPI.EfcData.DataAccess;
-using WebAPI.Persistance;
-using WebAPI.Persistance.Interface;
+ 
+ 
 using WebAPI.WebSocketGetway.Services;
 
 namespace WebAPI
@@ -26,12 +26,13 @@ namespace WebAPI
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" }); });
             //services.AddScoped<IMeasurementService, MeasurementService>();
-            //services.AddScoped<IMeasurementRepo, MeasurementRepo>();
-            services.AddScoped<IMeasurementRepo, MeasurementRepo>();
+       
+ 
             services.AddScoped<ILoRaWANService, LoRaWANServiceImp>();
             // services.AddDbContextPool<MushroomDatabase>(option=>option.UseSqlServer());
 
             services.AddScoped<IMeasurement, MeasurementDao>();
+            // services.AddScoped<IMeasurementType, MeasurementTypeDao>();
             services.AddScoped<ICo2Threshhold, CO2Dao>();
             services.AddDbContext<DataAccess1>();
 

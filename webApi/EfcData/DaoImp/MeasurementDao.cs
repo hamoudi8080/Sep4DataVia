@@ -19,12 +19,12 @@ public class MeasurementDao : IMeasurement
 
 
 
-    public Task AddMeasurements(Measurements measurements)
+    public Task AddMeasurements(Measurement measurements)
     {
         throw new NotImplementedException();
     }
 
-    public async Task<Measurements> GetMeasurementAsync(string mui)
+    public async Task<Measurement> GetMeasurementAsync(string mui)
     {
         var mashroom = await dbContext.MushroomRooms.Include(m => m.Measurements)
             .FirstOrDefaultAsync(m => m.MusId.Equals(mui));
@@ -45,7 +45,7 @@ public class MeasurementDao : IMeasurement
 
     }
 
-    public async Task<List<Measurements>> GetMeasurementHistoryAsync(string mui)
+    public async Task<List<Measurement>> GetMeasurementHistoryAsync(string mui)
     {
         var dateTime = DateTime.Now.AddDays(-45);
 

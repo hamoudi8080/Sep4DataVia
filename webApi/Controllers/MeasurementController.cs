@@ -20,7 +20,7 @@ public class MeasurementController:ControllerBase
     }
     
     [HttpGet]
-    public async Task<ActionResult<Measurements>> GetLastMeasurement([FromQuery] string mui)
+    public async Task<ActionResult<Measurement>> GetLastMeasurement([FromQuery] string mui)
     {
         if (!ModelState.IsValid)
         {
@@ -40,7 +40,7 @@ public class MeasurementController:ControllerBase
 
     [HttpGet]
     [Route("history")]
-    public async Task<ActionResult<IList<Measurements>>> GetListOfMeasurements([FromQuery] string mui)
+    public async Task<ActionResult<IList<Measurement>>> GetListOfMeasurements([FromQuery] string mui)
     {
         if (!ModelState.IsValid)
         {
@@ -58,9 +58,9 @@ public class MeasurementController:ControllerBase
         }
     }
 
-   private IEnumerable<Measurements> RemoveDuplicateMeasurements(IEnumerable<Measurements> measurements)
+   private IEnumerable<Measurement> RemoveDuplicateMeasurements(IEnumerable<Measurement> measurements)
     {
-        var measurementsToReturn = new List<Measurements>();
+        var measurementsToReturn = new List<Measurement>();
         var encounteredTimestamps = new Dictionary<DateTime, DateTime>();
 
         foreach (var measurement in measurements)

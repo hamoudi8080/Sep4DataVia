@@ -2,7 +2,7 @@
 
 namespace Model;
 
-public class Measurements
+public class Measurement
 {
     [Key]
     public int MeasureId { get; set; }

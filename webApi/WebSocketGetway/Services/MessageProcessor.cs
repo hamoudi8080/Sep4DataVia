@@ -7,15 +7,16 @@ namespace WebAPI.Gateway.Service
 {
     public class MessageProcessor
     {
-
-        public Measurements CreateMeasurement(IOTMessage message)
+        
+        
+        public Measurement CreateMeasurement(IOTMessage message)
         {
-            var measurement = new Measurements();
-            measurement.Temperature = (decimal)GetDecimal(message.data,0);
-            measurement.Humidity = (decimal)GetDecimal(message.data,4);
-            measurement.Co2 = (decimal)GetDecimal(message.data,8);
-            measurement.LightLevel = (decimal)GetDecimal(message.data,12);
-            measurement.Timestamp = DateTimeOffset.FromUnixTimeMilliseconds(message.ts).DateTime;
+            var measurement = new Measurement();
+            measurement.Temperature = (decimal)GetDecimal(message.data, 0);
+            measurement.Humidity = (decimal)GetDecimal(message.data, 4);
+            measurement.Co2 = (decimal)GetDecimal(message.data, 8);
+            measurement.LightLevel = (decimal)GetDecimal(message.data, 12);
+            measurement.Timestamp = DateTime.Now;
             Console.WriteLine(measurement.ToString());
             return measurement;
         }
@@ -24,67 +25,27 @@ namespace WebAPI.Gateway.Service
         {
             String hexString = numberInHex;
 
-            // simplified conversion, without considering a floating point
-            int number = int.Parse(hexString.Substring(charStartingPoint, 4), System.Globalization.NumberStyles.HexNumber);
-            Console.WriteLine($"NUMBAAAAAAA: {number}");
+
+            int number = int.Parse(hexString.Substring(charStartingPoint, 4),
+                System.Globalization.NumberStyles.HexNumber);
+            Console.WriteLine($"Number: {number}");
             return number;
         }
 
-        public decimal? CreateHumidity(IOTMessage message)
+
+        public decimal? CreateTemperature(string numberInHex, int charStartingPoint)
         {
-            String hexString = message.data;
-            
-           // simplified conversion, without considering a floating point
-           //Byte[0]
-           int number = int.Parse(hexString.Substring(0, 4), System.Globalization.NumberStyles.HexNumber);
-           Console.WriteLine($"NUMBAAAAAAA: {number}");
-           return number;
+            String hexString = numberInHex;
 
-           /* it is parsing the bytes into int and resulting in a floating number, like f.x. 45.5 of humidity
-           //Byte[0]
-           int dec = int.Parse(hexString.Substring(0, 4), System.Globalization.NumberStyles.HexNumber);
-          
-           //Byte[1]
-           int point = int.Parse(hexString.Substring(2,2), System.Globalization.NumberStyles.HexNumber);
-           
-           Console.WriteLine($"Decimal: {dec} Point: {point}");
-           decimal number = (decimal) (dec + (point / 100.0));
-           
-           return number;
-           */
+            int dec = int.Parse(hexString.Substring(charStartingPoint, 2), System.Globalization.NumberStyles.HexNumber);
 
-        }
 
-        public decimal? CreateTemperature(IOTMessage message){
-            String hexString = message.data;
-            
-            return null;
-        }
+            int point = int.Parse(hexString.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
 
-        public decimal? CreateCo2(IOTMessage message)
-        {
-            String hexString = message.data;
 
-            return null;
-
-        }
-
-        public decimal? Light(IOTMessage message)
-        {
-            String hexString = message.data;
-            
-            //Byte[0]
-            int dec = int.Parse(hexString.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-            
-            //Byte[1]
-            int point = int.Parse(hexString.Substring(2,2), System.Globalization.NumberStyles.HexNumber);
-            
-            Console.WriteLine($"Decimal: {dec} Point: {point}");
-            decimal number = (decimal) (dec + (point / 100.0));
-            Console.WriteLine($"NUMBAAAAAAA: {number}");
+            decimal number = (decimal)(dec + (point / 100.0));
 
             return number;
         }
-        
     }
 }
