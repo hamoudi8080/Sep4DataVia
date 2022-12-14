@@ -38,7 +38,7 @@ namespace webApi.Migrations
                     b.ToTable("MushroomRooms");
                 });
 
-            modelBuilder.Entity("Model.Measurements", b =>
+            modelBuilder.Entity("Model.Measurement", b =>
                 {
                     b.Property<int>("MeasureId")
                         .ValueGeneratedOnAdd()
@@ -71,7 +71,7 @@ namespace webApi.Migrations
                     b.ToTable("Measurements");
                 });
 
-            modelBuilder.Entity("Model.Measurements", b =>
+            modelBuilder.Entity("Model.Measurement", b =>
                 {
                     b.HasOne("Model.MashroomRoom", null)
                         .WithMany("Measurements")

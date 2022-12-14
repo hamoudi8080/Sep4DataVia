@@ -12,8 +12,8 @@ using WebAPI.EfcData.DataAccess;
 namespace webApi.Migrations
 {
     [DbContext(typeof(DataAccess1))]
-    [Migration("20221207172729_InitialCreate4")]
-    partial class InitialCreate4
+    [Migration("20221211224137_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,7 +41,7 @@ namespace webApi.Migrations
                     b.ToTable("MushroomRooms");
                 });
 
-            modelBuilder.Entity("Model.Measurements", b =>
+            modelBuilder.Entity("Model.Measurement", b =>
                 {
                     b.Property<int>("MeasureId")
                         .ValueGeneratedOnAdd()
@@ -74,7 +74,7 @@ namespace webApi.Migrations
                     b.ToTable("Measurements");
                 });
 
-            modelBuilder.Entity("Model.Measurements", b =>
+            modelBuilder.Entity("Model.Measurement", b =>
                 {
                     b.HasOne("Model.MashroomRoom", null)
                         .WithMany("Measurements")

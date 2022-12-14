@@ -19,7 +19,7 @@ public class Measurements
     public Decimal Co2 { get; set; }
     
 
-    public decimal LightLevel { get; set; }
+    public Decimal LightLevel { get; set; }
     
     public override string ToString()
     {
