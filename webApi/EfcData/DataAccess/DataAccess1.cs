@@ -1,23 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Model;
+using Model.Contract;
 
 namespace WebAPI.EfcData.DataAccess;
 
 public class DataAccess1:DbContext
 {
     public DbSet<MashroomRoom>? MushroomRooms { get; set; }
-    public DbSet<Measurement> Measurements { get; set; }
+    public DbSet<MeasurementThreshold> MeasurementThresholds { get; set; }
+    public DbSet<Measurements> Measurements { get; set; }   
     
-    // public DbSet<MeasurementType> MeasurementTypes { get; set; }
-    
- 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         // optionsBuilder.UseSqlServer(ConnectionString.GetConnectionStringFromEnvironment());
 
 
-        optionsBuilder.UseSqlServer("Server=HAMOUDI;Database=SEP4;Trusted_Connection=SSPI;Encrypt=false;TrustServerCertificate=true");
+        optionsBuilder.UseSqlServer("Server=LAPTOP-038MJ8RP;Database=Sep4DataBase;Trusted_Connection=SSPI;Encrypt=false;TrustServerCertificate=true");
         
      
         
@@ -29,4 +28,12 @@ public class DataAccess1:DbContext
         */
 
     }
+    
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        
+    }
+    
+    
 }
