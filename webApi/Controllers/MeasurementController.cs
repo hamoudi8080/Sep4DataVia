@@ -20,7 +20,7 @@ public class MeasurementController:ControllerBase
     }
     
     [HttpGet]
-    public async Task<ActionResult<Measurements>> GetLastMeasurement([FromQuery] string mui)
+    public async Task<ActionResult<Measurements>> GetMeasurement([FromQuery] string mui)
     {
         if (!ModelState.IsValid)
         {
@@ -40,7 +40,7 @@ public class MeasurementController:ControllerBase
 
     [HttpGet]
     [Route("history")]
-    public async Task<ActionResult<IList<Measurements>>> GetListOfMeasurements([FromQuery] string mui)
+    public async Task<ActionResult<IList<Measurements>>> GetHistoryOfMeasurements([FromQuery] string mui)
     {
         if (!ModelState.IsValid)
         {

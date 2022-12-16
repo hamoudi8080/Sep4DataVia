@@ -1,4 +1,4 @@
-﻿namespace Model.Contract;
+namespace Model.Contract;
 
 public class TemperatureThreshold
 {
@@ -6,11 +6,9 @@ public class TemperatureThreshold
     
     public decimal TempratureLevel { get; set; }
     public DateTime TimeStamp { get; set; }
+    public string Location { get; set; }
         
     public string MusId { get; set; }
 
-    public override string ToString()
-    {
-        return $"TemperatureThreshold: TIMESTAMP: {TimeStamp}, Temperature level: {TempratureLevel}, ID: {Id},MusID: {MusId}";
-    }
+   
 }

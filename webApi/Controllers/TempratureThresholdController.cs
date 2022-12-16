@@ -35,7 +35,7 @@ public class TempratureThresholdController:ControllerBase
     [HttpGet]
     [Route("History")]
 
-    public async Task<ActionResult<IList<LightThreshold>>> GetListOfLightAsync([FromQuery] string mui)
+    public async Task<ActionResult<IList<TemperatureThreshold>>> GetListOfTempAsync([FromQuery] string mui)
     {
         if (!ModelState.IsValid)
         {

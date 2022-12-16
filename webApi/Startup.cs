@@ -36,7 +36,9 @@ namespace WebAPI
             services.AddScoped<ILight, LightDao>();
             services.AddScoped<IHumidity, HumidityDao>();
             services.AddScoped<ITemperature, TempratureDao>();
+            services.AddScoped<IThreshold, ThresholdDao>();
             services.AddScoped<ICo2Threshhold, CO2Dao>();
+           
             services.AddDbContext<DataAccess1>();
 
         }

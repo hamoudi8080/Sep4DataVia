@@ -5,7 +5,7 @@
 namespace webApi.Migrations
 {
     /// <inheritdoc />
-    public partial class databaseUpgration2 : Migration
+    public partial class version4 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

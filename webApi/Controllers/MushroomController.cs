@@ -28,8 +28,8 @@ public class MushroomController:ControllerBase
         try
         {
 
-            MashroomRoom addedTeam = await mashroomServices.PostPlantAsync(mashroomRoom);
-            return Ok(addedTeam);
+            MashroomRoom added = await mashroomServices.PostMushroomAsync(mashroomRoom);
+            return Ok(added);
         }
         catch (Exception e)
         {

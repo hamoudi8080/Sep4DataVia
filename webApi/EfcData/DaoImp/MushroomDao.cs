@@ -20,7 +20,7 @@ public class MushroomDao:IMushroom
 
     
 
-    public async Task<MashroomRoom> PostPlantAsync(MashroomRoom mashroomRoom)
+    public async Task<MashroomRoom> PostMushroomAsync(MashroomRoom mashroomRoom)
     {
         EntityEntry<MashroomRoom> data = await dbContext.MushroomRooms.AddAsync(mashroomRoom);
         

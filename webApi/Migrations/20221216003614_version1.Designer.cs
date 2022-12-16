@@ -12,8 +12,8 @@ using WebAPI.EfcData.DataAccess;
 namespace webApi.Migrations
 {
     [DbContext(typeof(DataAccess1))]
-    [Migration("20221209144045_databaseUpgration2")]
-    partial class databaseUpgration2
+    [Migration("20221216003614_version1")]
+    partial class version1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,7 +31,11 @@ namespace webApi.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("name")
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -58,7 +62,7 @@ namespace webApi.Migrations
                     b.Property<decimal>("LightLevel")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("MashroomRoomMusId")
+                    b.Property<string>("MushroomRoomMusId")
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Temperature")
@@ -69,23 +73,79 @@ namespace webApi.Migrations
 
                     b.HasKey("MeasureId");
 
-                    b.HasIndex("MashroomRoomMusId");
+                    b.HasIndex("MushroomRoomMusId");
 
                     b.ToTable("Measurements");
                 });
 
+            modelBuilder.Entity("Model.Threshold", b =>
+                {
+                    b.Property<int>("ThresholdId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ThresholdId"));
+
+                    b.Property<decimal>("Co2MaxLevel")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Co2MinLevel")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("HumidityMaxLevel")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("HumidityMinLevel")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("LightMaxLevel")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("LightMinLevel")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TemperatureMaxLevel")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TemperatureMinLevel")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("muiMusId")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ThresholdId");
+
+                    b.HasIndex("muiMusId");
+
+                    b.ToTable("Thresholds");
+                });
+
             modelBuilder.Entity("Model.Measurements", b =>
                 {
-                    b.HasOne("Model.MashroomRoom", "MashroomRoom")
+                    b.HasOne("Model.MashroomRoom", "MushroomRoom")
                         .WithMany("Measurements")
-                        .HasForeignKey("MashroomRoomMusId");
+                        .HasForeignKey("MushroomRoomMusId");
 
-                    b.Navigation("MashroomRoom");
+                    b.Navigation("MushroomRoom");
+                });
+
+            modelBuilder.Entity("Model.Threshold", b =>
+                {
+                    b.HasOne("Model.MashroomRoom", "mui")
+                        .WithMany("Threshold")
+                        .HasForeignKey("muiMusId");
+
+                    b.Navigation("mui");
                 });
 
             modelBuilder.Entity("Model.MashroomRoom", b =>
                 {
                     b.Navigation("Measurements");
+
+                    b.Navigation("Threshold");
                 });
 #pragma warning restore 612, 618
         }

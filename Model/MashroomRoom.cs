@@ -10,11 +10,20 @@ public class MashroomRoom
     [Key]
     [StringLength(50)]
     public string MusId { get; set; }
+    
 
     [StringLength(50)] 
-    public string name { get; set; }
+    public string Name { get; set; }
+
+    public string Location { get; set; }
     
+ 
     public IList<Measurements?> Measurements { get; set; } = new List<Measurements?>();
+    
+    [JsonIgnore]
+    public IList<Threshold?> Threshold { get; set; } = new List<Threshold>();
+    
+    
 
     public MashroomRoom()
     {
