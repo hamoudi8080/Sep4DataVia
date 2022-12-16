@@ -43,7 +43,7 @@ public class MushroomDao:IMushroom
             throw new Exception("data NotFound");
         }
 
-        dbContext.Measurement.RemoveRange(mashroom.Measurements);
+        dbContext.Measurements.RemoveRange(mashroom.Measurements);
         dbContext.MushroomRooms.Remove(mashroom);
         await dbContext.SaveChangesAsync();
         return mashroom;

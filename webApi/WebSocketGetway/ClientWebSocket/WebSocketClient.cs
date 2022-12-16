@@ -69,9 +69,9 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
         //
         private async Task postMethodHumidity()
         {
-            string type = "Humidity";
-            int min = 20;
-            int max = 50;
+            string type = "Co2";
+            int min = 400;
+            int max = 600;
             SendDownLinkMessage(type, min, max);
             
             Thread.Sleep(30000);
@@ -155,28 +155,7 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
                      
                 }
             }
-            
-            // if (type == "Light")
-            // {
-            //     var message = new DLinkMessage()
-            //     {
-            //         cmd = "tx",
-            //         EUI = eui,
-            //         port = 13,
-            //         confirmed = true,
-            //         data = "123C123D"
-            //     };
-            //
-            //
-            //     string serializeMsg = JsonSerializer.Serialize(message);
-            //     Console.WriteLine(serializeMsg);
-            //
-            //     for (;;)
-            //     {
-            //         ws.Send(serializeMsg);
-            //         Thread.Sleep(30000);
-            //     }
-            // }
+ 
         }
 
        
@@ -185,19 +164,12 @@ namespace WebAPI.WebSocketGetway.ClientWebSocket
         {
             Console.WriteLine($"GATEWAY CONTROLLER => CONNECTION ESTABLISHED...");
         }
-
-        // 2 params that the method receives comes from the onMessage event handler
-        // then attach the method to the event
-        // so, whenever there is a new message/incoming from the loriot, C# knows that it has to execute this function.
-        // sender = who is sending the msg
-        // MEA = all the arguments contained in that msg / e=event
+ 
         private void OnMessage(object? sender, MessageEventArgs e)
         {
             Console.WriteLine("Received from the server: " + e.Data);
             var message = JsonSerializer.Deserialize<IOTMessage>(e.Data);
-
-            
-                // IOTMessage dummymsg = new IOTMessage();
+            // IOTMessage dummymsg = new IOTMessage();
                 // dummymsg.cmd = "tx";
                 // dummymsg.EUI = "0004A30B00E7E7C1";
                 // dummymsg.port = 4;

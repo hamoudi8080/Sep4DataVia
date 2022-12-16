@@ -7,7 +7,7 @@ namespace WebAPI.EfcData.DataAccess;
 public class DataAccess1:DbContext
 {
     public DbSet<MashroomRoom>? MushroomRooms { get; set; }
-    public DbSet<Measurements> Measurements { get; set; }
+    public DbSet<Measurement> Measurements { get; set; }
 
     public DbSet<Threshold> Thresholds { get; set; }
     
@@ -17,7 +17,7 @@ public class DataAccess1:DbContext
         // optionsBuilder.UseSqlServer(ConnectionString.GetConnectionStringFromEnvironment());
 
 
-        optionsBuilder.UseSqlServer("Server=LAPTOP-038MJ8RP;Database=Sep4DataBase;Trusted_Connection=SSPI;Encrypt=false;TrustServerCertificate=true");
+        optionsBuilder.UseSqlServer("Server=LAPTOP-038MJ8RP;Database=FinalSep4DataBase1;Trusted_Connection=SSPI;Encrypt=false;TrustServerCertificate=true");
         
      
         

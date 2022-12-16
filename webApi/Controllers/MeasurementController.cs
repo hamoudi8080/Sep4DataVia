@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Model;
 using Model.Contract;
-using WebAPI.DataTransferObject;
+
 
 namespace WebAPI.Controllers;
 
@@ -20,7 +20,7 @@ public class MeasurementController:ControllerBase
     }
     
     [HttpGet]
-    public async Task<ActionResult<Measurements>> GetMeasurement([FromQuery] string mui)
+    public async Task<ActionResult<Measurement>> GetMeasurement([FromQuery] string mui)
     {
         if (!ModelState.IsValid)
         {
@@ -40,7 +40,7 @@ public class MeasurementController:ControllerBase
 
     [HttpGet]
     [Route("history")]
-    public async Task<ActionResult<IList<Measurements>>> GetHistoryOfMeasurements([FromQuery] string mui)
+    public async Task<ActionResult<IList<Measurement>>> GetHistoryOfMeasurements([FromQuery] string mui)
     {
         if (!ModelState.IsValid)
         {
@@ -58,9 +58,9 @@ public class MeasurementController:ControllerBase
         }
     }
 
-   private IEnumerable<Measurements> RemoveDuplicateMeasurements(IEnumerable<Measurements> measurements)
+   private IEnumerable<Measurement> RemoveDuplicateMeasurements(IEnumerable<Measurement> measurements)
     {
-        var measurementsToReturn = new List<Measurements>();
+        var measurementsToReturn = new List<Measurement>();
         var encounteredTimestamps = new Dictionary<DateTime, DateTime>();
 
         foreach (var measurement in measurements)

@@ -38,8 +38,8 @@ public class CO2Dao:ICo2Threshhold
         var co2 = new Co2Threshold()
         {
             Id = measurement.MeasureId,
-            Co2Level = measurement.Co2,
-            MUSID = mui,
+            Co2Level = measurement.Co2Level,
+                MUSID = mui,
             TimeStamp = measurement.Timestamp
         };
         return co2;
@@ -64,7 +64,7 @@ public class CO2Dao:ICo2Threshhold
         if (!measurements.Any())
             throw new Exception("MeasurementNotFound");
         return measurements.Select(m => new Co2Threshold() 
-                {Co2Level = m.Co2, MUSID = mui, TimeStamp = m.Timestamp, Id = m.MeasureId})
+                {Co2Level = m.Co2Level, MUSID = mui, TimeStamp = m.Timestamp, Id = m.MeasureId})
             .ToList();
     }
 

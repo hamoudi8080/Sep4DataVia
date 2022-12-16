@@ -18,7 +18,7 @@ public class MashroomRoom
     public string Location { get; set; }
     
  
-    public IList<Measurements?> Measurements { get; set; } = new List<Measurements?>();
+    public IList<Measurement?> Measurements { get; set; } = new List<Measurement?>();
     
     [JsonIgnore]
     public IList<Threshold?> Threshold { get; set; } = new List<Threshold>();

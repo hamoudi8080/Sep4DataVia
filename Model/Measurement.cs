@@ -4,7 +4,7 @@ using Model.Contract;
 
 namespace Model;
 
-public class Measurements
+public class Measurement
 {
     [Key]
     
