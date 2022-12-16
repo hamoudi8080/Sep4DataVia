@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Sep4DataBase@localhost" uuid="c3bfb68c-d795-4b0d-aead-260c0c7d1a68">
+    <data-source source="LOCAL" name="FinalSep4DataBase1@localhost" uuid="c0179bb7-b305-4be8-9753-cb769bbfb4f0">
       <driver-ref>sqlserver.jtds</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:jtds:sqlserver://localhost:1433/Sep4DataBase;instance=MSSQLSERVER</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="Sep4DataBase@localhost [2]" uuid="2d766487-c58f-476e-8fe7-910a59499a26">
-      <driver-ref>sqlserver.jtds</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:jtds:sqlserver://localhost:1433/Sep4DataBase;instance=MSSQLSERVER</jdbc-url>
+      <jdbc-url>jdbc:jtds:sqlserver://localhost:1433/FinalSep4DataBase1;instance=MSSQLSERVER</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
