@@ -42,7 +42,7 @@
 
 
 using WebAPI;
-using WebAPI.service;
+ 
 using WebAPI.WebSocketGetway.ClientWebSocket;
 using WebAPI.WebSocketGetway.Model;
 using WebAPI.WebSocketGetway.Services;
@@ -51,23 +51,16 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        
         // DummyClass d = new DummyClass();
         // d.s();
-        //
-        
-        
-        
+
         
         
         WebSocketClient client = WebSocketClient.Instance;
         CreateHostBuilder(args).Build().Run();
         
-        
-        
-        
-        // LoriotImp l = new LoriotImp();
-        // IOTMessage m = new IOTMessage();
-        //   l.HandlingMessage(m);
+ 
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>

@@ -2,10 +2,10 @@
 
 public interface IMeasurement
 {
-    Task AddMeasurements( Measurements measurements);
+    Task AddMeasurements( Measurement measurements);
    
     
-    Task<Measurements> GetMeasurementAsync(string mui);
+    Task<Measurement> GetMeasurementAsync(string mui);
     
-    Task<List<Measurements>> GetMeasurementHistoryAsync(string mui);
+    Task<List<Measurement>> GetMeasurementHistoryAsync(string mui);
 }

@@ -2,6 +2,7 @@
 
 public class ConnectionString
 {
+    //connection string
     public static string GetConnectionStringFromEnvironment()
     {
         var dbName = System.Environment.GetEnvironmentVariable("RDS_DB_NAME");

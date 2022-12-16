@@ -5,5 +5,5 @@ namespace WebAPI.DataTransferObject;
 public class PostMeasurement
 {
     public string Mui { get; set; }
-    public IList<Measurements> Measurements { get; set; } = new List<Measurements>();
+    public IList<Measurement> Measurements { get; set; } = new List<Measurement>();
 }
