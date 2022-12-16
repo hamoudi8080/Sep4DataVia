@@ -26,7 +26,7 @@ namespace WebAPI.Gateway.Service
 
             // simplified conversion, without considering a floating point
             int number = int.Parse(hexString.Substring(charStartingPoint, 4), System.Globalization.NumberStyles.HexNumber);
-            Console.WriteLine($"NUMBAAAAAAA: {number}");
+            Console.WriteLine($"number : {number}");
             return number;
         }
 
@@ -34,24 +34,12 @@ namespace WebAPI.Gateway.Service
         {
             String hexString = message.data;
             
-           // simplified conversion, without considering a floating point
-           //Byte[0]
+           
            int number = int.Parse(hexString.Substring(0, 4), System.Globalization.NumberStyles.HexNumber);
            Console.WriteLine($"NUMBAAAAAAA: {number}");
            return number;
 
-           /* it is parsing the bytes into int and resulting in a floating number, like f.x. 45.5 of humidity
-           //Byte[0]
-           int dec = int.Parse(hexString.Substring(0, 4), System.Globalization.NumberStyles.HexNumber);
-          
-           //Byte[1]
-           int point = int.Parse(hexString.Substring(2,2), System.Globalization.NumberStyles.HexNumber);
-           
-           Console.WriteLine($"Decimal: {dec} Point: {point}");
-           decimal number = (decimal) (dec + (point / 100.0));
-           
-           return number;
-           */
+         
 
         }
 
@@ -81,7 +69,7 @@ namespace WebAPI.Gateway.Service
             
             Console.WriteLine($"Decimal: {dec} Point: {point}");
             decimal number = (decimal) (dec + (point / 100.0));
-            Console.WriteLine($"NUMBAAAAAAA: {number}");
+            Console.WriteLine($"NUMBER: {number}");
 
             return number;
         }
